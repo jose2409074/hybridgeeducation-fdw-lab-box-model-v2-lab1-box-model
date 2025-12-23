@@ -17,4 +17,5 @@ jobs:
       - name: Install dependencies
         run: npm install puppeteer
       - name: Run tests
-        run: node test.js
+        # Agregamos este comando para arreglar el error del Sandbox en Linux
+        run: sed -i "s/puppeteer.launch()/puppeteer.launch({ args: ['--no-sandbox'] })/g" test.js && node test.js
